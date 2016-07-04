@@ -93,9 +93,7 @@ extern "C"
 #define PROXY_ensure  PROXY_paramCheck
 
 #define PROXY_paramCheck(C, V, S) do {\
-    if (!(C)) { eError = V;\
-    if(S) DOMX_ERROR("failed check:" #C" - returning error: 0x%x - %s",V,S);\
-    else DOMX_ERROR("failed check:" #C" - returning error: 0x%x",V); \
+    if (!(C)) {\
     goto EXIT; }\
     } while(0)
 
@@ -114,7 +112,6 @@ extern "C"
 #define PROXY_checkRpcError() do { \
     if (eRPCError == RPC_OMX_ErrorNone) \
     { \
-        DOMX_DEBUG("Corresponding RPC function executed successfully"); \
         eError = eCompReturn; \
         PROXY_assert((eError == OMX_ErrorNone) || (eError == OMX_ErrorNoMore), eError, "Error returned from OMX API in ducati"); \
     } else \
