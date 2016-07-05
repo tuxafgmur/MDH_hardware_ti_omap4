@@ -21,11 +21,10 @@
 #include "DebugUtils.h"
 #include "Status.h"
 
-
-
-
 // logging functions
 #ifdef CAMERAHAL_DEBUG
+#   define CAMHAL_LOGI  DBGUTILS_LOGI
+#   define CAMHAL_LOGW  DBGUTILS_LOGW
 #   define CAMHAL_LOGD  DBGUTILS_LOGD
 #   define CAMHAL_LOGDA DBGUTILS_LOGDA
 #   define CAMHAL_LOGDB DBGUTILS_LOGDB
@@ -38,28 +37,26 @@
 #       define CAMHAL_LOGVA(str)
 #       define CAMHAL_LOGVB(str, ...)
 #   endif
+#   define CAMHAL_LOGEB DBGUTILS_LOGEB
 #else
+#   define CAMHAL_LOGI(...)
+#   define CAMHAL_LOGW(...)
 #   define CAMHAL_LOGD(...)
 #   define CAMHAL_LOGDA(str)
 #   define CAMHAL_LOGDB(str, ...)
 #   define CAMHAL_LOGV(...)
 #   define CAMHAL_LOGVA(str)
 #   define CAMHAL_LOGVB(str, ...)
+#   define CAMHAL_LOGEB(str, ...)
 #endif
 
-#define CAMHAL_LOGI  DBGUTILS_LOGI
-#define CAMHAL_LOGW  DBGUTILS_LOGW
 #define CAMHAL_LOGE  DBGUTILS_LOGE
 #define CAMHAL_LOGEA DBGUTILS_LOGEA
-#define CAMHAL_LOGEB DBGUTILS_LOGEB
 #define CAMHAL_LOGF  DBGUTILS_LOGF
 
 #define CAMHAL_ASSERT DBGUTILS_ASSERT
 #define CAMHAL_ASSERT_X DBGUTILS_ASSERT_X
 
 #define CAMHAL_UNUSED(x) (void)x
-
-
-
 
 #endif // CAMERAHAL_COMMON_H

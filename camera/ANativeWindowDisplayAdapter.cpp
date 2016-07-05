@@ -811,8 +811,8 @@ status_t ANativeWindowDisplayAdapter::returnBuffersToWindow()
                 return ret;
              }
          }
-     else
-         CAMHAL_LOGE("mANativeWindow is NULL");
+     //else
+     //    CAMHAL_LOGE("mANativeWindow is NULL");
 
      ///Clear the frames with camera adapter map
      mFramesWithCameraAdapterMap.clear();
@@ -1069,9 +1069,9 @@ status_t ANativeWindowDisplayAdapter::PostFrame(ANativeWindowDisplayAdapter::Dis
 
         // Set crop only if current x and y offsets do not match with frame offsets
         if ((mXOff != xOff) || (mYOff != yOff)) {
-            CAMHAL_LOGDB("offset = %u left = %d top = %d right = %d bottom = %d",
-                          dispFrame.mOffset, xOff, yOff ,
-                          xOff + mPreviewWidth, yOff + mPreviewHeight);
+            //CAMHAL_LOGDB("offset = %u left = %d top = %d right = %d bottom = %d",
+            //              dispFrame.mOffset, xOff, yOff ,
+            //              xOff + mPreviewWidth, yOff + mPreviewHeight);
 
             // We'll ignore any errors here, if the surface is
             // already invalid, we'll know soon enough.
@@ -1091,9 +1091,9 @@ status_t ANativeWindowDisplayAdapter::PostFrame(ANativeWindowDisplayAdapter::Dis
             }
             ret = mANativeWindow->enqueue_buffer(mANativeWindow, handle);
         }
-        if ( NO_ERROR != ret ) {
-            CAMHAL_LOGE("Surface::queueBuffer returned error %d", ret);
-        }
+        //if ( NO_ERROR != ret ) {
+        //    CAMHAL_LOGE("Surface::queueBuffer returned error %d", ret);
+        //}
 
         mFramesWithCameraAdapterMap.removeItem((buffer_handle_t *) dispFrame.mBuffer->opaque);
 
@@ -1114,9 +1114,9 @@ status_t ANativeWindowDisplayAdapter::PostFrame(ANativeWindowDisplayAdapter::Dis
 
         // cancel buffer and dequeue another one
         ret = mANativeWindow->cancel_buffer(mANativeWindow, handle);
-        if ( NO_ERROR != ret ) {
-            CAMHAL_LOGE("Surface::cancelBuffer returned error %d", ret);
-        }
+        //if ( NO_ERROR != ret ) {
+        //    CAMHAL_LOGE("Surface::cancelBuffer returned error %d", ret);
+        //}
 
         mFramesWithCameraAdapterMap.removeItem((buffer_handle_t *) dispFrame.mBuffer->opaque);
 
@@ -1150,10 +1150,10 @@ bool ANativeWindowDisplayAdapter::handleFrameReturn()
 
     err = mANativeWindow->dequeue_buffer(mANativeWindow, &buf, &stride);
     if (err != 0) {
-        CAMHAL_LOGE("Surface::dequeueBuffer failed: %s (%d)", strerror(-err), -err);
+        //CAMHAL_LOGE("Surface::dequeueBuffer failed: %s (%d)", strerror(-err), -err);
 
         if ( NO_INIT == err ) {
-            CAMHAL_LOGEA("Preview surface abandoned!");
+            //CAMHAL_LOGEA("Preview surface abandoned!");
             returnBuffersToWindow();
             mANativeWindow = NULL;
         }
@@ -1163,10 +1163,10 @@ bool ANativeWindowDisplayAdapter::handleFrameReturn()
 
     err = mANativeWindow->lock_buffer(mANativeWindow, buf);
     if ( NO_ERROR != err ) {
-        CAMHAL_LOGE("Surface::lockBuffer failed: %s (%d)", strerror(-err), -err);
+        //CAMHAL_LOGE("Surface::lockBuffer failed: %s (%d)", strerror(-err), -err);
 
         if ( NO_INIT == err ) {
-            CAMHAL_LOGEA("Preview surface abandoned!");
+            //CAMHAL_LOGEA("Preview surface abandoned!");
             returnBuffersToWindow();
             mANativeWindow = NULL;
         }

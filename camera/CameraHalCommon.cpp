@@ -175,7 +175,7 @@ const char* CameraHal::getPixelFormatConstant(const char* parametersFormat)
             pixelFormat = (const char *) android::CameraParameters::PIXEL_FORMAT_YUV420SP;
         }
     } else {
-        CAMHAL_LOGEA("Preview format is NULL, defaulting to NV12");
+        //CAMHAL_LOGEA("Preview format is NULL, defaulting to NV12");
         pixelFormat = (const char *) android::CameraParameters::PIXEL_FORMAT_YUV420SP;
     }
 
@@ -201,7 +201,7 @@ size_t CameraHal::calculateBufferSize(const char* parametersFormat, int width, i
             bufferSize = 0;
         }
     } else {
-        CAMHAL_LOGEA("Preview format is NULL");
+        //CAMHAL_LOGEA("Preview format is NULL");
         bufferSize = 0;
     }
 
